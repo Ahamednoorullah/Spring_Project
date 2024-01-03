@@ -1,0 +1,14 @@
+package com.chainsys.crudproject.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.chainsys.crudproject.entity.User;
+
+public interface UserRepository extends CrudRepository<User, Integer>{
+//crud repo - It contains pre-defined implementation like findId findAll etc..and
+	//we can define method by using findBy or getBy keyword
+	
+	User findByUserName(String userName);
+	//returntype findByVariableName (Datatype variable)
+	
+}

@@ -1,0 +1,37 @@
+package com.chainsys.jpademo.validation;
+
+import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.chainsys.jpademo.model.RegisterForm;
+
+
+
+public class RegisterValid {
+
+	public boolean isValid(RegisterForm registerForm) {
+		String name = registerForm.getName();
+		String email = registerForm.getEmail();
+		String password = registerForm.getPassword();
+		String cnfpassword = registerForm.getCnfpassword();
+		boolean nameValidation = nameValid(name);
+		if ((email != "")&&(name != "")&&(password != "")&&(cnfpassword!="")&&
+				(password.contentEquals(cnfpassword))&&(nameValidation==true)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean nameValid(String name) {
+		String regex = "^[a-zA-Z][\\w_]{4,29}$";
+		Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+		
+	    if (pattern.matcher(name).matches()) {
+			return true;
+		} else {
+            return false;
+		}
+	}
+}

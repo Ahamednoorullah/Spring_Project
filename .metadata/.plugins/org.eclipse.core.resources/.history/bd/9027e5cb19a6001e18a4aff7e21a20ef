@@ -1,0 +1,8 @@
+package com.chainsys.crudproject.service;
+
+import com.chainsys.crudproject.dto.UserDTO;
+
+public interface UserService {
+
+	UserDTO getUserDetails(Integer userId);
+}

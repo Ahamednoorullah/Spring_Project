@@ -1,0 +1,5 @@
+package com.chainsys.crudproject.dto;
+
+public class UserDTO {
+
+}

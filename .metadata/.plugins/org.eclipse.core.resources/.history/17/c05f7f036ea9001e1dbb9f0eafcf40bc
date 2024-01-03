@@ -1,0 +1,15 @@
+package com.chainsys.jpademo.validation;
+
+import com.chainsys.jpademo.model.RegisterForm;
+
+public class RegisterValid {
+
+	public boolean isValid(RegisterForm registerForm) {
+		System.out.println(registerForm.getEmail());
+		if (registerForm.getEmail().contentEquals(null)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+}

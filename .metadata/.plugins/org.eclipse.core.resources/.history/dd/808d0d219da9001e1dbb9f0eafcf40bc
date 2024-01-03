@@ -1,0 +1,65 @@
+package com.chainsys.jpademo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.chainsys.jpademo.dao.RegisterFormDAO;
+import com.chainsys.jpademo.model.RegisterForm;
+import com.chainsys.jpademo.validation.RegisterValid;
+
+@Controller
+public class RegisterFormController {
+
+	@Autowired
+	RegisterFormDAO registerdao;
+	
+	@RequestMapping("index")
+	public String user() {
+		return "index.jsp";
+	}
+	
+	@RequestMapping("addUser")
+	public String addUser(RegisterForm registerForm)
+	{
+		RegisterValid registerValid = new RegisterValid();
+		boolean valid = registerValid.isValid(registerForm);
+		
+		if (valid==true) {
+			registerdao.save(registerForm);
+			return "index.jsp";
+		} else {
+			return "Registeration Not Valid";
+			
+		}
+		
+	}
+	
+	@RequestMapping("getUser")
+	public ModelAndView getUser(@RequestParam String email) {
+		ModelAndView mav = new ModelAndView("showUser.jsp");
+		RegisterForm registerForm =registerdao.findByEmail(email);
+		mav.addObject(registerForm);
+		return mav;
+	}
+	
+	@RequestMapping("deleteUser")
+	public ModelAndView deleteUser(@RequestParam String email) {
+		ModelAndView mav = new ModelAndView("deleteUser.jsp");
+		RegisterForm registerForm =registerdao.findByEmail(email);
+		registerdao.delete(registerForm);
+		mav.addObject(registerForm);
+		return mav;
+	}
+	
+	@RequestMapping("updateUser")
+	public ModelAndView updateUser(RegisterForm registerForm) {
+		ModelAndView mav = new ModelAndView("updateUser.jsp");
+		registerForm =registerdao.findByEmail(registerForm.getEmail());
+		registerdao.delete(registerForm);
+		mav.addObject(registerForm);
+		return mav;
+	}
+}

@@ -1,0 +1,5 @@
+package com.chainsys.jpademo.model;
+
+public class RegisterForm {
+
+}

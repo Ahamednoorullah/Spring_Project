@@ -1,0 +1,13 @@
+package com.chainsys.crudproject.service;
+
+import com.chainsys.crudproject.dto.UserDTO;
+
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public UserDTO getUserDetails(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

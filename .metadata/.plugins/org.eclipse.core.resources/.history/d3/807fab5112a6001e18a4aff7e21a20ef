@@ -1,0 +1,5 @@
+package com.chainsys.crudproject.repository;
+
+public interface UserRepository {
+
+}

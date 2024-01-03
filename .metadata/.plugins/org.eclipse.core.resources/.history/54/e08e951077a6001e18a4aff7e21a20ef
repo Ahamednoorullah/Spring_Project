@@ -1,0 +1,5 @@
+package com.chainsys.jpademo.dao;
+
+public interface RegisterFormDAO {
+
+}
